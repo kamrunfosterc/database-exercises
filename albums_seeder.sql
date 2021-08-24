@@ -1,4 +1,4 @@
-use codeup_testing_db;
+use codeup_testing_db;# shows what data base your calling to work with
 -- describe albums;
 truncate albums;
 
