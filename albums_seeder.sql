@@ -1,5 +1,6 @@
 use codeup_testing_db;
 -- describe albums;
+truncate albums;
 
 INSERT INTO albums(artist, name, release_date, sales, genre)
 VALUES ('Fleetwood Mac','Rumours','1977',27.9,'Soft rock'),
