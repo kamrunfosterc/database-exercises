@@ -36,6 +36,11 @@ select count(*)
 from employees.employees e
 where e.last_name like '%q%';
 
+#todo trying extra
+select *
+from employees.employees e
+where e.last_name like 's%s';
+
 select count(*)
 from employees.employees as e
 where e.last_name like '%q%' and e.last_name not like '%qu%';

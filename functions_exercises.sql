@@ -1,14 +1,36 @@
-# 1Using the terminal create a script and save it as functions_exercises.sql.
-
+use employees;
 # 2Find all employees whose names start and end with 'E'. Use concat() to combine their first and last name
 # together as a single column in your results.
+#todo part 2
+SELECT *
+from employees.employees e
+where CONCAT(first_name, last_name) like 'e%e';
+# above returns firstnames starting w e and lastnames ending with e
 
+
+
+#todo part 3
 # 3Find all employees born on Christmas — 842 rows.
 
-# 4Find all employees hired in the 90s and born on Christmas — 362 rows.
+select * from employees.employees e where month(birth_date) = 12 and day(birth_date) = 25;
 
-# 5Change the query for employees hired in the 90s and born on Christmas such that the first result is the
+#todo part 4
+# 4Find all employees hired in the 90s and born on Christmas — 362 rows.
+select *
+from employees.employees e
+where year(hire_date) between 1990 and 1999;
+#got it to show all years in the 90's however not in any particular order
+
+
+# 5Change the query for employees hired in the 90s and born on Christmas such that the first
+# result is the
 # oldest employee who was hired last. It should be Khun Bernini.
 
 # 6For your query of employees born on Christmas and hired in the 90s, use datediff() to find how many days
 # they have been working at the company (Hint: You might also need to use now() or curdate()).
+
+
+
+
+
+
