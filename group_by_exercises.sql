@@ -1,18 +1,8 @@
 use employees;
 
-# SELECT first_name, COUNT(first_name) numberOfRecordsWithThisFirstName
-# FROM employees
-# WHERE first_name NOT LIKE '%a%'
-# GROUP BY first_name;
-#
-# # show how many employees were hired on each day for specified limit
-# SELECT hire_date, COUNT(*) allEmployeesHiredOnSameDay
-# FROM employees
-# GROUP BY hire_date
-# ORDER BY COUNT(*) DESC
-# LIMIT 10;
 #todo 2) in script, use distinct to find the unique titles in the titles table
-select distinct title from titles;
+select distinct title
+from titles;
 
 #todo 3) find query for employees whose lastName start & end with 'e'
 select last_name, count(*)
@@ -43,5 +33,11 @@ where
            or first_name = 'Maya'
 group by gender
 order by gender
+
+#todo SAM WALKTHROUGH
+select e.gender, count(e.gender) count
+from employees.employees e
+where e.first_name in ('irena', 'vidya', 'maya')
+group by e.first_name, e.gender;
 
 
