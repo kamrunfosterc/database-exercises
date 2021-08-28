@@ -41,3 +41,5 @@ where e.first_name in ('irena', 'vidya', 'maya')
 group by e.first_name, e.gender;
 
 
+
+
