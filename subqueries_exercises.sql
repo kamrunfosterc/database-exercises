@@ -86,6 +86,21 @@ and to_date = '9999-01-01';
 #     from employees as e
 #           )
 
+#SAM VERISON OF 2ND BONUS PROBLEM
+select emp.first_name, emp.last_name
+from employees emp
+where emp.emp_no in (
+    select s.emp_no
+    from salaries s where s.salary in (
+        select Max(sal.salary)
+        from salaries sal
+        )
+    );
+
+#An alternative using JOIN SAM VERSION
+select emp.first_name, emp.last_name
+from employees.employees emp join salaries sal on emp.emp_no = sal.emp_no
+order by sal.salary desc limit 1
 
 
 
