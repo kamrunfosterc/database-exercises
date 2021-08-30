@@ -25,15 +25,11 @@ INSERT INTO rolez (name) VALUES ('reviewer');
 INSERT INTO rolez (name) VALUES ('commenter');
 
 INSERT INTO users (name, email, role_id) VALUES
-('bob', 'bob@example.com', 2),
-('joe', 'joe@example.com', 2),
-('sally', 'sally@example.com', 2),
-('mike', 'mike@example.com', null);
+('Robert', 'bob@example.com', 2),
+('Johaun', 'joe@example.com', 2),
+('Sal', 'sally@example.com', 2),
+('Michael', 'mike@example.com', null);
 
-
-# select name, b.email
-# from user a
-#     inner join roles b on a.role_id = r.id;
 
 select a.name, a.email, b.name
 from users a
@@ -46,6 +42,54 @@ from users a
 select a.name, a.email, b.name
 from users a
          right join roles b on a.role_id = b.id;
+
+select a.name, a.email, b.name
+from users a
+         left join roles b on a.role_id = b.id
+where b.name is null;
+
+select a.name, a.email, b.name
+from users a
+         right join roles b on a.role_id = b.id
+where b.name is null;
+
+select a.name, a.email, b.name
+from users a
+         right join roles b on a.role_id = b.id
+where a.email like 's%';
+
+describe employees.dept_emp;
+
+select e.first_name, e.last_name
+from employees.employees e
+where emp_no = 10001;
+
+select e.first_name, e.last_name, de.from_date, de.to_date, d.dept_name
+from employees.employees e
+         inner join employees.dept_emp de on e.emp_no = de.emp_no
+         inner join employees.departments d on de.dept_no = d.dept_no
+where e.last_name like 'D%';
+
+#TODO WALKTHROUGH
+
+
+
+
+
+
+
+
+
+
+
+# SELECT CONCAT(e.first_name, ' ', e.last_name) AS full_name, d.dept_name
+# FROM employees as e
+#          JOIN dept_emp as de
+#               ON de.emp_no = e.emp_no
+#          JOIN departments as d
+#               ON d.dept_no = de.dept_no
+# WHERE de.to_date = '9999-01-01' AND e.emp_no = 10001;
+
 
 # Use JOIN, LEFT JOIN, and RIGHT JOIN to combine results from the users and roles tables as we did in the lesson.
 #     Before you run each query, guess the expected number of results.
