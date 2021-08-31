@@ -1,17 +1,4 @@
--------------------------------------------
-
-#Table Cor Owner
-# SSN
-# full name
-# DL-Number
-
-#  One to Many Relationship
-
-# Table Cars
-# VIN NUMBER
-# MAKE
-# MODEL
-# YEAR
+DATABASE DESIGN LAYOUT
 
 #TODO Users sign up for the site with an email and password
 USERS Table
@@ -21,40 +8,85 @@ USERS Table
 -user password
 
 #TODO Users create ads with a title and description and category.
-#One to many
-USERS AD table
-- user id (foreign key to retrieve data)
+#One to many (user has many ads, ad has single user)
+AD table
+- user id on ad(foreign key to retrieve data)
 - title of add
 - ad description
-- category
-
-#TODO Each ad is associated with the user that created it.
-
+- ad_id
 
 #TODO An ad can be in one or more categories (for example, "help wanted", "giveaway", or "furniture")
-Categories ad Table
+Categories Table
+- category_id
 - help wanted
 - giveaway
 - furniture
 - movie tickets
 - back to school
 
+-----------------------------------
+I. USER
+    - username/
+    - user id (PRIME KEY)
+    - user email
+    - user password
 
-CREATE TABLE Categories (
-    quote_id INTEGER UNSIGNED NOT NULL,
-    topic_id INTEGER UNSIGNED NOT NULL,
-    FOREIGN KEY (quote_id) REFERENCES quotes(id),
-    FOREIGN KEY (topic_id) REFERENCES topics(id)
-);
-CREATE TABLE Categories (
-    quote_id INTEGER UNSIGNED NOT NULL,
-    topic_id INTEGER UNSIGNED NOT NULL,
-    FOREIGN KEY (quote_id) REFERENCES quotes(id),
-    FOREIGN KEY (topic_id) REFERENCES topics(id)
-);
-CREATE TABLE Categories (
-    quote_id INTEGER UNSIGNED NOT NULL,
-    topic_id INTEGER UNSIGNED NOT NULL,
-    FOREIGN KEY (quote_id) REFERENCES quotes(id),
-    FOREIGN KEY (topic_id) REFERENCES topics(id)
-);
+II. AD
+    - user id on ad(foreign key to retrieve data)
+    - title of add
+    - ad description
+    - category
+    - ad_id
+
+III. CATEGORY
+    - user id on ad(foreign key to retrieve data)
+    - category_id
+    - categories
+    - help wanted
+    - giveaway
+    - furniture
+    - movie tickets
+    - back to school
+
+IV. AD_CATEGORY(LINKS AD & CATEGORY BY ID)
+    - ad_id
+    - category_id
+-----------------------------------
+- TODO For a given ad, what is the email address of the user that created it?
+select email
+FROM USERS
+JOIN user_ads ON user_id
+where user_id = '5';
+
+- TODO For a given ad, what category, or categories, does it belong to?
+select category_id
+from Ad
+where ad_description (
+    select category
+    from categories
+    where ad_id = '117' )
+group by category
+order by user_id
+
+-TODO For a given category, show all the ads that are in that category.
+SELECT ad.title
+ FROM ad
+ WHERE id IN (
+   SELECT ad_id
+   FROM category
+   WHERE category = (
+       SELECT category_id
+       FROM category
+       WHERE categories = 'help wanted'
+       )
+   );
+
+-TODO For a given user, show all the ads they have posted.
+
+   SELECT ad.title
+      FROM ads
+      WHERE user_id = (
+          SELECT id
+          FROM users
+          WHERE username = ''
+          );
