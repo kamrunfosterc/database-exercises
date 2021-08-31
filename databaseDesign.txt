@@ -29,13 +29,32 @@ USERS AD table
 - category
 
 #TODO Each ad is associated with the user that created it.
-Tom created a back-to-school ad, and Kayrun can use that ad even though he's not the creator of it
 
 
 #TODO An ad can be in one or more categories (for example, "help wanted", "giveaway", or "furniture")
-Categories Table
+Categories ad Table
 - help wanted
 - giveaway
 - furniture
-- small businesses
+- movie tickets
 - back to school
+
+
+CREATE TABLE Categories (
+    quote_id INTEGER UNSIGNED NOT NULL,
+    topic_id INTEGER UNSIGNED NOT NULL,
+    FOREIGN KEY (quote_id) REFERENCES quotes(id),
+    FOREIGN KEY (topic_id) REFERENCES topics(id)
+);
+CREATE TABLE Categories (
+    quote_id INTEGER UNSIGNED NOT NULL,
+    topic_id INTEGER UNSIGNED NOT NULL,
+    FOREIGN KEY (quote_id) REFERENCES quotes(id),
+    FOREIGN KEY (topic_id) REFERENCES topics(id)
+);
+CREATE TABLE Categories (
+    quote_id INTEGER UNSIGNED NOT NULL,
+    topic_id INTEGER UNSIGNED NOT NULL,
+    FOREIGN KEY (quote_id) REFERENCES quotes(id),
+    FOREIGN KEY (topic_id) REFERENCES topics(id)
+);
